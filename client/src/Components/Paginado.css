@@ -1,0 +1,21 @@
+.paginado{
+    grid-template-columns: repeat(auto-fit, minmax(0.5rem,0.4rem));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .number{
+        border-radius: 50px;
+        background-color: blue;
+      color: white;
+      font-size: 25px;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 10px;
+      float: left;
+      padding: 0.3rem 5px;
+      cursor: pointer;
+    }
+    .number:hover{
+        border-radius: 50px;
+      background:rgb(40, 139, 1);
+    }

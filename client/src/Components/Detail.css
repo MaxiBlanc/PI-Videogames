@@ -1,0 +1,35 @@
+.name{
+  color: white;
+  border-width: 15px;
+  font-weight: bold;
+  font-size: 300%;
+  background-color: rgba(0, 0, 255, 0.356);
+}
+ 
+.data{
+  background-color: rgba(0, 0, 255, 0.199);
+  margin-right:10px;
+  color: white
+}
+
+.back{
+    color: white;
+    border-width: 5px;
+    font-weight: bold;
+    font-size: 200%;
+    font-style: lighter ;
+    border-radius: 20px;
+    border-color: blue;
+    background-color: rgba(0, 0, 255, 0.356);   
+}
+
+.back:hover{
+  color: white;
+  border-width: 5px;
+  font-weight: bold;
+  font-size: 200%;
+  font-style: lighter ;
+  border-radius: 20px;
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.356); 
+}

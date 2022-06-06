@@ -1,0 +1,43 @@
+.background{
+    height:695px;
+    background-image: url('https://i0.wp.com/lavidaesunvideojuego.com/wp-content/uploads/2019/07/En-seis-meses-Super-Smash-Bros-Ultimate-ha-logrado-vender-13-73-millones-de-unidades-la_vida_es_un_videojuego.jpg?fit=2732%2C1366&ssl=1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+      } 
+
+.btn{
+    color: transparent;
+    margin-top: 00px;
+    margin-right: 0px;
+	background-color:transparent;
+    border-color: transparent;
+	cursor:pointer;
+}
+
+.h1{
+    border-width: 15px;
+    font-weight: bold;
+    margin-top: 9%;
+    font-size: 500%;
+    font-style: lighter ;
+    color: black;
+    border-radius: 100px;
+    background-color: transparent;
+}
+
+.h1:hover{
+    border-color: deeppink;
+    font-weight: bold;
+    background-color: deeppink;
+    color: white;
+    border-radius: 80px;
+}
+
+.btn:hover{
+    font-size: 150%;
+    background-color: transparent;
+    color: whitesmoke;
+    border-color: deeppink;
+    border-radius: 20px;
+}
