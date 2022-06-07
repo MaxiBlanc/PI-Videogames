@@ -29,7 +29,6 @@ export default function VideogameCreate(){
         let error = {}
         if (!input.name) error.name = "You must enter a name for the game"
         if (input.rating<1 || input.rating>5) error.rating = "You must assign a rating between 1 and 5"
-        if (!input.released.includes("-")) error.released = "You must enter the date in the following format (AAAA-MM-DD)"
         return error
     }
 
@@ -51,6 +50,12 @@ export default function VideogameCreate(){
         })
     }
     
+    function handlePlatforms(e){
+            setInput({
+                ...input,
+                platforms: [...input.platforms, e.target.value]
+            })
+    }
 
      function handleDeleteP(e){
          setInput({
@@ -62,7 +67,6 @@ export default function VideogameCreate(){
      function handleSubmit(e){
          if (
              error.name ||
-             error.released ||
              error.rating ||
              !input.name
          ) {alert ("The Videogame could not be created")
@@ -87,12 +91,6 @@ export default function VideogameCreate(){
     //ctrl k u descom
     //ctrl k c com
 
-     function handlePlatforms(e){
-             setInput({
-                 ...input,
-                 platforms: [...input.platforms, e.target.value]
-             })
-     }
 
      function handleGenres(e){
             setInput({
@@ -212,11 +210,10 @@ export default function VideogameCreate(){
                 <h1>📅 Released 📅</h1>
                 </div>
                 <div>
-                <input type="text"
+                <input type="date"
                 value= {input.released}
                 name= "released" 
                 onChange={(e)=> handleOnChange(e)}/>
-                {error.released && <p>{error.released}</p>}
                 </div>
                 </div>
                 <button className="crear" type="submit">Crear</button>

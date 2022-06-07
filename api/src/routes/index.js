@@ -76,8 +76,9 @@ router.get("/videogames/:id", async (req, res) => {
         description: IDDB.description,
         released: IDDB.released,
         rating: IDDB.rating,
-        platforms: IDDB.platforms,
+        platforms: IDDB.platforms.join(", "),
       };
+      console.log(IDDB.name)
       videogameIdDb
         ? res.status(200).send(videogameIdDb)
         : res.status(404).send("There is no game with the entered ID!!");
