@@ -28,7 +28,11 @@ export default function VideogameCreate(){
     function validation (input){
         let error = {}
         if (!input.name) error.name = "You must enter a name for the game"
+        if (!input.description) error.description = "You must enter a description for the game"
+        if (!input.background_image) error.background_image = "You must enter a image for the game"
         if (input.rating<1 || input.rating>5) error.rating = "You must assign a rating between 1 and 5"
+        if (input.platforms.length<1) error.platforms = "select at least one platforms for the game"
+        if (input.genres.length<1) error.genres = "select at least one genre for the game"
         return error
     }
 
@@ -42,19 +46,39 @@ export default function VideogameCreate(){
           [e.target.name]: e.target.value
         }))
      }
-
+     
+     
+          function handleGenres(e){
+                 setInput({
+                     ...input,
+                     genres: [...input.genres, e.target.value]
+                 })
+                 setError(validation({
+                     ...input,
+                    genres:[...input.genres, e.target.value]
+                  }))
+         }
+          
      function handleDeleteG(e){
         setInput({
             ...input,
             genres: input.genres.filter(g => g !== e)
         })
+        setError(validation({
+            ...input,
+           genres: input.genres.filter(g=> g !==e)
+         }))
     }
     
     function handlePlatforms(e){
             setInput({
                 ...input,
-                platforms: [...input.platforms, e.target.value]
+                platforms: [...input.platforms, e.target.value] //trae lo q ya habia y le concatena el e.target.value
             })
+            setError(validation({
+               ...input,
+              platforms:[...input.platforms, e.target.value]
+            }))
     }
 
      function handleDeleteP(e){
@@ -62,14 +86,23 @@ export default function VideogameCreate(){
              ...input,
              platforms: input.platforms.filter(g => g !== e)
          })
+         setError(validation({
+            ...input,
+           platforms:input.platforms.filter(g=> g !==e)
+         }))
      }
      
      function handleSubmit(e){
          if (
              error.name ||
              error.rating ||
-             !input.name
-         ) {alert ("The Videogame could not be created")
+             error.description ||
+             error.background_image ||
+             !input.name ||
+             error.genres ||
+             error.platforms ||
+             error.released
+         ) {alert ("The video game could not be created, check to complete all the data correctly")
         } else {
              e.preventDefault();
              console.log(input)
@@ -91,14 +124,6 @@ export default function VideogameCreate(){
     //ctrl k u descom
     //ctrl k c com
 
-
-     function handleGenres(e){
-            setInput({
-                ...input,
-                genres: [...input.genres, e.target.value]
-            })
-    }
-     
     return(
         <div>
             <Link to='/home'><button className="back">◀ Back</button></Link>
@@ -135,11 +160,12 @@ export default function VideogameCreate(){
                                 <ul>{e}<button
                                     type="button"
                                     onClick={() => handleDeleteG(e)}
-                                >X</button>
+                                    >X</button>
                                 </ul>
                             </div>
                         ))}
                     </ul>
+                        {error.genres && <p>{error.genres}</p>}
                     </div>
                 <div className="data">
                 <div>
@@ -150,6 +176,7 @@ export default function VideogameCreate(){
                 value= {input.background_image}
                 name= "background_image" 
                 onChange={(e)=> handleOnChange(e)}/>
+                {error.background_image && <p>{error.background_image}</p>}
                 </div>
                 </div>
                 <div className="data">
@@ -173,6 +200,7 @@ export default function VideogameCreate(){
                 value= {input.description}
                 name= "description" 
                 onChange={(e)=> handleOnChange(e)}/>
+                {error.description && <p>{error.description}</p>}
                 </div>
                 </div>
                 <div className="data">
@@ -190,7 +218,7 @@ export default function VideogameCreate(){
                             <option value="iOS">iOS</option>
                             <option value="Android">Android</option>
                             <option value="PC">PC</option>
-                    </select>
+                    </select>  
                 </label>
                 </div>
                 <ul>
@@ -199,10 +227,11 @@ export default function VideogameCreate(){
                                 <ul>{e}<button
                                     type="button"
                                     onClick={() => handleDeleteP(e)}
-                                >X</button>
+                                    >X</button>
                                 </ul>
                             </div>
                         ))}
+                        {error.platforms && <p>{error.platforms}</p>}
                     </ul>
                     </div>
                 <div className="data">

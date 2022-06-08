@@ -3,18 +3,20 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { getVideoName } from "../Actions/Actions";
 
-export default function Search () {
+export default function Search (props) {
     const dispatch = useDispatch()
     const [name, setName] = useState (" ")
-
+    const {setCurrentPage}=props
     function handleInputChange(e){
         e.preventDefault()
         setName(e.target.value)
     }
 
     function handleSubmit(e){
+        setCurrentPage(1)
         e.preventDefault()
-        dispatch(getVideoName(name))
+        dispatch(getVideoName(name))//voy guardando lo q va tipeando el usuario en mi estado local name
+        
     }
 
     return(

@@ -37,7 +37,7 @@ function handleOrderAZ (e){
   e.preventDefault();
   dispatch(orderByName(e.target.value))
   setCurrentPage(1);
-  setOrden(`Ordenado ${e.target.value}`)
+  setOrden(`Ordenado ${e.target.value}`) // sirve que para cdo setee la pag(linea 39) para que me modifique el estado local y lo reenderize
 };
 
 function handleOrderRat (e){
@@ -122,7 +122,7 @@ allGames={allGames.length}
 paginado={paginado}
 />
 
-<Search/> 
+<Search setCurrentPage={setCurrentPage}/> 
 
         <div className="orden">
 

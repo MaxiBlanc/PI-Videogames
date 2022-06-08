@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
 //    type: DataTypes.UUID,
 //   dafaultValue: DataTypes.UUIDV4,
 //   allowNull: false,
-//    primaryKey: true,
+//    primaryKey: true, // sequelicce le genera un id entero solo
 //  },
     name: {
       type: DataTypes.STRING,
