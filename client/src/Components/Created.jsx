@@ -9,9 +9,9 @@ import "./created.css"
 export default function VideogameCreate(){
     const dispatch = useDispatch()
     const allgenres = useSelector((state) => state.genres)
-    const [error,setError] = useState({}) // porque aca no sabia cuantos tipos de errores iba a tener
+    const [error,setError] = useState({}) 
 
-    const [input,setInput] = useState({ // y aca tengo datos que voy a tener que tener si o si a la hora de crear el juego
+    const [input,setInput] = useState({
         name: "",
         description: "",
         background_image : "",
@@ -73,7 +73,7 @@ export default function VideogameCreate(){
     function handlePlatforms(e){
             setInput({
                 ...input,
-                platforms: [...input.platforms, e.target.value] //trae lo q ya habia y le concatena el e.target.value
+                platforms: [...input.platforms, e.target.value]
             })
             setError(validation({
                ...input,

@@ -30,30 +30,25 @@ export default function Home(){
 
 
 useEffect(()=>{
-    dispatch(getVideogames()) // al nacer, ejecuta la funcion sin que el usuario haga nada
+    dispatch(getVideogames())
 },[])
 
 function handleOrderAZ (e){
   dispatch(orderByName(e.target.value))
-  setCurrentPage(1);
-  setOrden(`Ordenado ${e.target.value}`) // sirve que para cdo setee la pag(linea 39) para que me modifique el estado local y lo reenderize
-};
+  setOrden(`Ordenado ${e.target.value}`) };
 
 function handleOrderRat (e){
   dispatch(orderByRating(e.target.value))
-  setCurrentPage(1);
   setOrdenR(`Ordenado ${e.target.value}`)
 };
 
 
 function handleFilterGenres(e){
   dispatch(filterGamesbyGenres(e.target.value))
-  setCurrentPage(1);
 }
 
 function handleFilterCreated(e){
   dispatch(filterCreated(e.target.value))
-  setCurrentPage(1);
 }
 
 
@@ -120,7 +115,7 @@ allGames={allGames.length}
 paginado={paginado}
 />
 
-<Search setCurrentPage={setCurrentPage}/> 
+<Search/> 
 
         <div className="orden">
 

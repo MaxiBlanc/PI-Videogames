@@ -7,11 +7,11 @@ import  "./Detail.css"
 
 export default function Detail () {
     const dispatch = useDispatch();
-    const {id} = useParams(); //lo pasamos por params, lo saca de la url
+    const {id} = useParams();
     
     useEffect(()=>{
         dispatch(getDetails(id)) 
-    },[id])// que el use effect se dispache cada vez que cambia el id(la matriz de dependencia)
+    },[id])
 
     const GamesId = useSelector((state) => state.videogamesId)
 

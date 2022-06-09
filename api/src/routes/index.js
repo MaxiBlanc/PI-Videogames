@@ -6,10 +6,6 @@ const axios = require("axios");
 const {Videogame , Genres} = require ('../db.js');
 const router = Router(); 
 
-//router.get('/videogames',async(req,res)=>{
-//    const allG = await GetAllGames()
-//    res.json(allG);
-//})
 
 router.get('/videogames' ,async (req, res) => {
     try {
@@ -81,7 +77,7 @@ router.get("/videogames/:id", async (req, res) => {
        const AGenres = genresAPI.map(e => e.name) 
        AGenres.forEach(e => {
             Genres.findOrCreate({
-              where: { name: e } // where.... busca, donde nombre sea e
+              where: { name: e } 
             })
         })
         const genresDB = await Genres.findAll()
@@ -93,8 +89,8 @@ router.get("/videogames/:id", async (req, res) => {
 
 
 router.post('/videogame', async (req,res) =>{
-    let {name, description, background_image, released, rating, platforms, genres} = req.body; //traigo estos datos del body
-    let videogameCreated = await Videogame.create({name, description, background_image, released, rating, platforms}) // le asigno lo q llega por body
+    let {name, description, background_image, released, rating, platforms, genres} = req.body;
+    let videogameCreated = await Videogame.create({name, description, background_image, released, rating, platforms}) 
     let BdVideogame = await Genres.findAll({ where: {name : genres}})
     videogameCreated.addGenres(BdVideogame)
     res.send('Videogame created succesfully!')

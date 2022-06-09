@@ -5,13 +5,13 @@ const initialState = {
     genres: []  
 }
 
-function rootReducer (state = initialState, action){// root reducer recibe, estado actual y una accion y devuelve un nuevo estado
-    switch(action.type){ // si mi action.type es case GET_VIDEOGAMES esto, sino esto
+function rootReducer (state = initialState, action){
+    switch(action.type){ 
         case 'GET_VIDEOGAMES':
             return{
                 ...state,
-                videogames: action.payload, // es igual al de abajo
-                AllVideogames: action.payload // este se usa en el filtrado por generos, es igual al de arriba
+                videogames: action.payload, 
+                AllVideogames: action.payload 
             }
         case 'GET_DETAILS':
             return{
@@ -19,12 +19,12 @@ function rootReducer (state = initialState, action){// root reducer recibe, esta
                 videogamesId: action.payload
             }
             case 'FILTER_BY_GENRES':
-                const allGames = state.AllVideogames; //con este cada vez q quiera filtrar se va a traer todos los juegos...
+                const allGames = state.AllVideogames;
                 const FilterbyG = action.payload === 'All' ? allGames 
                 : allGames.filter(e => e.genres.includes(action.payload))
             return{
                 ...state,
-                videogames: FilterbyG // y va a modificar el otro al guardarlo
+                videogames: FilterbyG 
             }
             case 'FILTER_CREATED':
                 const allVidegames = state.AllVideogames;

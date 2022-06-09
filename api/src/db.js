@@ -36,7 +36,7 @@ const { Videogame, Genres } = sequelize.models;
 // Product.hasMany(Reviews);
 
 Videogame.belongsToMany(Genres, { through: 'Videogame_genre' });
-Genres.belongsToMany(Videogame, { through: 'Videogame_genre' }); // se conectan por la tabla intermedia a traves de las claves primaria de ambos(genero y pokemon)
+Genres.belongsToMany(Videogame, { through: 'Videogame_genre' });
 
 
 module.exports = {
