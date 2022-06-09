@@ -31,16 +31,7 @@ router.get('/videogames' ,async (req, res) => {
   });
 
 
-//  router.get("/videogames/:id", async (req, res) => {
-//      const id = req.params.id;
-//      const totalGames = await GetAllGames()
-//      if (id){
-//          const GamesId = await totalGames.filter(e => e.id == id)
-//          GamesId.length?
-//          res.json(GamesId) :
-//          res.status(404).send('There is no game with the entered ID!!')
-//      }
-//  })
+
 
 router.get("/videogames/:id", async (req, res) => {
   try {
@@ -53,7 +44,7 @@ router.get("/videogames/:id", async (req, res) => {
         id: ID.data.id,
         name: ID.data.name,
         background_image: ID.data.background_image,
-        description: ID.data.description,
+        description: ID.data.description.replace(/<[^>]+>/g, ''),
         genres: ID.data.genres?.map((e) => e.name).join(", "),
         released: ID.data.released,
         rating: ID.data.rating,
@@ -61,9 +52,7 @@ router.get("/videogames/:id", async (req, res) => {
           (e) => e.platform.name
         ).join(", "),
       };
-      videogameInfo
-        ? res.status(200).send(videogameInfo)
-        : res.status(404).send("There is no game with the entered ID!!");
+      res.status(200).send(videogameInfo)
     } else {
       const IDDB = await Videogame.findByPk(id, {
         include: Genres,
@@ -78,13 +67,10 @@ router.get("/videogames/:id", async (req, res) => {
         rating: IDDB.rating,
         platforms: IDDB.platforms.join(", "),
       };
-      console.log(IDDB.name)
-      videogameIdDb
-        ? res.status(200).send(videogameIdDb)
-        : res.status(404).send("There is no game with the entered ID!!");
+      res.status(200).send(videogameIdDb)
     }
-  } catch (error) {
-    console.log(error);
+  } catch{
+    res.status(404).send("There is no game with the entered ID!!");
   }
 });
 
@@ -92,12 +78,10 @@ router.get("/videogames/:id", async (req, res) => {
   router.get('/genres', async (req, res) => {
     try{
         const genresAPI = (await axios.get('https://api.rawg.io/api/genres?key=a00293488b2c45e682939739dd2ff8ca')).data.results
-       // console.log(genresAPI)
        const AGenres = genresAPI.map(e => e.name) 
-       console.log(AGenres)
        AGenres.forEach(e => {
             Genres.findOrCreate({
-              where: { name: e }
+              where: { name: e } // where.... busca, donde nombre sea e
             })
         })
         const genresDB = await Genres.findAll()
@@ -109,13 +93,10 @@ router.get("/videogames/:id", async (req, res) => {
 
 
 router.post('/videogame', async (req,res) =>{
-    let {name, description, background_image, released, rating, platforms, genres} = req.body;
-    let videogameCreated = await Videogame.create({name, description, background_image, released, rating, platforms})
-    //console.log(videogameCreated)
+    let {name, description, background_image, released, rating, platforms, genres} = req.body; //traigo estos datos del body
+    let videogameCreated = await Videogame.create({name, description, background_image, released, rating, platforms}) // le asigno lo q llega por body
     let BdVideogame = await Genres.findAll({ where: {name : genres}})
-    console.log(BdVideogame)
     videogameCreated.addGenres(BdVideogame)
-
     res.send('Videogame created succesfully!')
     });
 

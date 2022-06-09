@@ -5,11 +5,11 @@ import { getVideoName } from "../Actions/Actions";
 
 export default function Search (props) {
     const dispatch = useDispatch()
-    const [name, setName] = useState (" ")
+    const [name, setName] = useState (" ") // name variable, seteo esa variable con el setname
     const {setCurrentPage}=props
     function handleInputChange(e){
         e.preventDefault()
-        setName(e.target.value)
+        setName(e.target.value) // actualiza el valor actual de name
     }
 
     function handleSubmit(e){

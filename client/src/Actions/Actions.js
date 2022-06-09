@@ -2,7 +2,7 @@ import axios from 'axios';
  
 export function getVideogames(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/videogames");
+        var json = await axios.get("http://localhost:3001/videogames"); // axios.get hace un pedido, de datos. a donde? a la ruta del back
         return dispatch({
             type: 'GET_VIDEOGAMES',
             payload: json.data
@@ -25,7 +25,6 @@ export function getDetails(id){
     }
 
 export function filterGamesbyGenres (payload){
-    console.log(payload)
     return{
         type:'FILTER_BY_GENRES',
         payload,
@@ -62,7 +61,7 @@ export function getVideoName (name){
                 type : "GET_VIDEONAME",
                 payload: json.data
             })
-        } catch (error) {
+        } catch {
             alert("There is no Videogame with the name entered")
         }
     }

@@ -30,18 +30,16 @@ export default function Home(){
 
 
 useEffect(()=>{
-    dispatch(getVideogames())
-},[dispatch])
+    dispatch(getVideogames()) // al nacer, ejecuta la funcion sin que el usuario haga nada
+},[])
 
 function handleOrderAZ (e){
-  e.preventDefault();
   dispatch(orderByName(e.target.value))
   setCurrentPage(1);
   setOrden(`Ordenado ${e.target.value}`) // sirve que para cdo setee la pag(linea 39) para que me modifique el estado local y lo reenderize
 };
 
 function handleOrderRat (e){
-  e.preventDefault();
   dispatch(orderByRating(e.target.value))
   setCurrentPage(1);
   setOrdenR(`Ordenado ${e.target.value}`)

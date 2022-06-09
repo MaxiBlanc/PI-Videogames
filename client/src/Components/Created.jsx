@@ -9,9 +9,9 @@ import "./created.css"
 export default function VideogameCreate(){
     const dispatch = useDispatch()
     const allgenres = useSelector((state) => state.genres)
-    const [error,setError] = useState({})
+    const [error,setError] = useState({}) // porque aca no sabia cuantos tipos de errores iba a tener
 
-    const [input,setInput] = useState({
+    const [input,setInput] = useState({ // y aca tengo datos que voy a tener que tener si o si a la hora de crear el juego
         name: "",
         description: "",
         background_image : "",
@@ -93,7 +93,8 @@ export default function VideogameCreate(){
      }
      
      function handleSubmit(e){
-         if (
+        e.preventDefault()
+        if (
              error.name ||
              error.rating ||
              error.description ||
@@ -105,7 +106,6 @@ export default function VideogameCreate(){
          ) {alert ("The video game could not be created, check to complete all the data correctly")
         } else {
              e.preventDefault();
-             console.log(input)
              dispatch(postVideogame(input))
              alert ("the Videogame has been created successfully")
              setInput({
@@ -118,8 +118,7 @@ export default function VideogameCreate(){
                  genres: []
                 })
             }
-                
-            }
+}
 
     //ctrl k u descom
     //ctrl k c com
@@ -138,7 +137,7 @@ export default function VideogameCreate(){
                 <div>
                 <input type="text"
                 value= {input.name}
-                name= "name" 
+                name= "name"
                 onChange={(e)=> handleOnChange(e)}/>
                 {error.name && <p>{error.name}</p>}
                 </div>

@@ -5,8 +5,8 @@ const initialState = {
     genres: []  
 }
 
-function rootReducer (state = initialState, action){
-    switch(action.type){
+function rootReducer (state = initialState, action){// root reducer recibe, estado actual y una accion y devuelve un nuevo estado
+    switch(action.type){ // si mi action.type es case GET_VIDEOGAMES esto, sino esto
         case 'GET_VIDEOGAMES':
             return{
                 ...state,

@@ -21,7 +21,6 @@ const ApiGames  = async () => {
         arrGames.push({
             id: e.id,
             name : e.name,
-            description : e.description,
             released: e.released,
             rating : e.rating,
             background_image : e.background_image,
@@ -30,7 +29,6 @@ const ApiGames  = async () => {
         });
     });
 }
-console.log(arrGames.length)
     return arrGames;
 } catch (error) {
         return(error);
@@ -50,7 +48,7 @@ const DbGames = async () => {
     });
     const mapInfoDb = infoDb?.map((e) => {
           return {
-                id: e.id,
+        id: e.id,
         name: e.name,
        background_image: e.background_image,
         genres: e.genres.map(e=>e.name).join(" , "),
